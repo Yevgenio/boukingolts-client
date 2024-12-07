@@ -1,0 +1,18 @@
+.error-message {
+  text-align: center;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f8d7da;
+  color: #721c24;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.error-message a {
+  color: #004085;
+  text-decoration: none;
+}
+
+.error-message a:hover {
+  text-decoration: underline;
+}

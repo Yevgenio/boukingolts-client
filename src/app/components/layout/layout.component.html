@@ -1,0 +1,40 @@
+<div class="layout">
+  <!-- Header Section -->
+  <header class="header">
+    <div class="title-container">
+      <h1>סטודנט 7</h1>
+    </div>
+    <nav class="nav-buttons">
+      <!-- Right-aligned buttons -->
+      <div class="right-links">
+        <a routerLink="/">עמוד הבית</a>
+        <a routerLink="/chats">קבוצות</a>
+        <a routerLink="/deals">הטבות</a>
+        <a routerLink="/events">אירועים</a>
+      </div>
+      <!-- Left-aligned buttons -->
+      <div class="left-links">
+        <a *ngIf="authService.isLoggedIn()" routerLink="/settings">My Profile</a>
+        <a *ngIf="!authService.isLoggedIn()" routerLink="/login">Login</a>
+        <a *ngIf="!authService.isLoggedIn()" routerLink="/signup">Sign Up!</a>
+        <a *ngIf="authService.isLoggedIn()" routerLink (click)="logout()">Logout</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Content Section -->
+  <main class="content">
+    <router-outlet></router-outlet>
+  </main>
+
+  <!-- Footer Section -->
+  <!-- <footer class="footer">
+    <p>
+      <a routerLink="/contact">צור קשר</a>
+       - 
+      <a routerLink="/about">קצת עלינו</a>
+       - 
+      &copy; Student 7 - 2024 - All Rights Reserved 
+    </p>
+  </footer> -->
+</div>

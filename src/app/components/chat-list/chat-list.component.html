@@ -1,0 +1,17 @@
+ <h1>קבוצות</h1>
+ <button *ngIf="authService.isAdmin()" routerLink="/chats/add">צור חדש</button>
+
+<div class="chat-list">
+  <div *ngFor="let chat of chats" class="chat-item">
+    <!-- Wrap the entire chat-item content (excluding the button) in a link -->
+    <a [routerLink]="['/chats/id', chat._id]" class="chat-link">
+      <h2>{{ chat.name }}</h2>
+      <div
+        class="chat-image"
+        [ngStyle]="{ 'background-image': 'url(' + chat.imagePath + ')' }"
+      ></div>
+      <p>{{ chat.description }}</p>
+    </a>
+    <button>Add to Cart</button>
+  </div>
+</div>

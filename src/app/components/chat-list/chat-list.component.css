@@ -1,0 +1,76 @@
+.chat-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.chat-item {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  background-color: #fff;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.chat-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+.chat-item h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.chat-item {
+  margin-bottom: 20px;
+}
+
+.chat-link {
+  display: block;
+  color: inherit; /* Ensure the text color inherits from the parent */
+  text-decoration: none; /* Remove default link styling */
+}
+
+.chat-image {
+  width: 100%; /* This will fill the width of the container */
+  padding-top: 100%; /* This ensures the div is a square by making height equal to width */
+  background-size: cover; /* Ensures the image fills the div and crops the longer side */
+  background-position: center; /* Keeps the image centered */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  border-radius: 5px; /* Optional: Rounded corners */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Adds a shadow for depth */
+}
+
+.chat-item p {
+  color: #666;
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+
+.chat-item .price {
+  font-weight: bold;
+  margin-bottom: 15px;
+  font-size: 1.2em;
+  color: #4CAF50;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+button:hover {
+  background-color: #45a049;
+  /* transform: translateY(-1px); */
+  /* box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25); */
+}

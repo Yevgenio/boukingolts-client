@@ -1,0 +1,91 @@
+.homepage {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 20%;
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-right: 2px solid #ccc;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin-bottom: 15px;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.sidebar ul li a:hover {
+  color: #4CAF50;
+}
+
+.content {
+  width: 80%;
+  padding: 20px;
+}
+
+.intro {
+  margin-bottom: 30px;
+}
+
+.featured-deals {
+  margin-bottom: 30px;
+}
+
+.featured-deals .deals {
+  display: flex;
+  gap: 20px;
+}
+
+.featured-deals .deal {
+  width: 30%;
+  text-align: center;
+}
+
+.featured-deals .deal img {
+  max-width: 100%;
+  height: auto;
+}
+
+.promotions {
+  margin-bottom: 30px;
+}
+
+.subscribe {
+  margin-bottom: 30px;
+}
+
+.subscribe form {
+  display: flex;
+  gap: 10px;
+}
+
+.subscribe input {
+  flex-grow: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+}
+
+.subscribe button {
+  padding: 8px 15px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.subscribe button:hover {
+  background-color: #45a049;
+}

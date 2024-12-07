@@ -1,0 +1,63 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.header {
+  background-color: #1585db;;
+  color: white;
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.header .title-container {
+  display: flex;
+  align-items: center;
+  width: 20%;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  text-align: right; 
+}
+
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+}
+
+.nav-buttons .right-links,
+.nav-buttons .left-links {
+  display: flex;
+  gap: 15px;
+}
+
+.nav-buttons a {
+  text-decoration: none;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.nav-buttons a:hover {
+  text-decoration: underline;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.footer {
+  background-color: #4CAF50;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}

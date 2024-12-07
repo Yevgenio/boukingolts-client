@@ -1,0 +1,10 @@
+<div class="profile-container">
+    <h1>Welcome, {{ user?.username }}</h1>
+    <p>Email: {{ user?.email }}</p>
+  
+    <div *ngIf="isAdmin()">
+      <p>You have admin privileges!</p>
+      <button routerLink="/deal/add">Add New Deal</button>
+    </div>
+</div>
+  

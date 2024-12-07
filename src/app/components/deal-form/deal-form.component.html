@@ -1,0 +1,46 @@
+<div class="form-container">
+  <h1>הוסף הטבה חדשה</h1>
+  <form (ngSubmit)="onSubmit()" [formGroup]="dealForm" class="deal-form">
+    <div class="form-group">
+      <label for="name">שם</label>
+      <input id="name" type="text" formControlName="name" placeholder="Enter deal name" required />
+    </div>
+
+    <div class="form-group">
+      <label for="description">תיאור</label>
+      <textarea id="description" formControlName="description" placeholder="Enter deal description"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="category">קטגוריה</label>
+      <input id="category" type="text" formControlName="category" placeholder="Enter category" />
+    </div>
+
+    <div class="form-group">
+      <label for="stock">כמות</label>
+      <input id="stock" type="number" formControlName="stock" placeholder="Enter stock quantity" />
+    </div>
+
+    <div class="form-group">
+      <label for="image">תמונה</label>
+      <input id="imagePath" type="file" (change)="onFileSelect($event, 'imagePath')" />
+    </div>
+
+    <div class="form-group">
+      <label for="barcode">ברקוד</label>
+      <input id="imagePath" type="file" (change)="onFileSelect($event, 'barcodePath')" />
+    </div>
+
+    <div class="form-group">
+      <label for="startsAt">תאריך התחלה</label>
+      <input id="startsAt" type="date" formControlName="startsAt" />
+    </div>
+
+    <div class="form-group">
+      <label for="endsAt">תאריך סיום</label>
+      <input id="endsAt" type="date" formControlName="endsAt" />
+    </div>
+
+    <button type="submit" [disabled]="dealForm.invalid">שלח</button>
+  </form>
+</div>

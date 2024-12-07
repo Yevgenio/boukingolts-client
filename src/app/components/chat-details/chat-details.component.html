@@ -1,0 +1,16 @@
+<div *ngIf="chat; else loading">
+  <h1>{{ chat.name }}</h1>
+  <div class="chat-detail">
+    <div class="image-zoom-container" (mousemove)="onMouseMove($event)" (mouseleave)="onMouseLeave()">
+      <img [src]="chat.imagePath" alt="{{ chat.name }}" class="chat-image" />
+      <div class="zoomed-image" #zoomedImage [style.background-image]="'url(' + chat.imagePath + ')'"></div>
+    </div>
+    <div class="chat-info">
+      <p>{{ chat.description }}</p>
+      <!-- <button>Add to Cart</button> -->
+    </div>
+  </div>
+</div>
+<ng-template #loading>
+  <p>Loading chat details...</p>
+</ng-template>
