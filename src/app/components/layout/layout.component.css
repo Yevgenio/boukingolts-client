@@ -5,13 +5,17 @@
 }
 
 .header {
-  background-color: #1585db;;
+  background-color: #178866;;
   color: white;
   padding: 10px 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+}
+
+.header a { 
+  text-decoration: none;
 }
 
 .header .title-container {
