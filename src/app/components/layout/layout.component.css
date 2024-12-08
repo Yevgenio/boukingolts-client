@@ -2,11 +2,12 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
+  /* background-color: whitesmoke; */
 }
 
 .header {
-  background-color: #178866;;
-  color: white;
+  background-color: white;
+  /* color: black; */
   padding: 10px 15px;
   display: flex;
   justify-content: space-between;
@@ -15,8 +16,8 @@
 }
 
 .header a { 
-  text-decoration: none;
-  color: white;
+  color: #00cabd;
+  font-family: "Lucida Console", "Courier New", monospace;
 }
 
 .header .title-container {
@@ -27,8 +28,13 @@
 
 .header h1 {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 3rem;
   text-align: right; 
+}
+
+.header h1 a {
+  text-decoration: none;
+  font-family: 'Brush Script MT', cursive;
 }
 
 .nav-buttons {
@@ -37,27 +43,33 @@
   width: 80%;
 }
 
-.nav-buttons .right-links,
-.nav-buttons .left-links {
+.nav-buttons .content-links,
+.nav-buttons .user-links {
   display: flex;
   gap: 15px;
 }
 
 .nav-buttons a {
   text-decoration: none;
-  color: white;
   font-size: 1rem;
   font-weight: bold;
 }
 
-.nav-buttons a:hover {
-  text-decoration: underline;
+.nav-buttons a:hover,
+.header h1 a:hover{
+  color: #1c6d67;
 }
 
 .content {
-  flex: 1;
+  /* flex: 1;
   padding: 20px;
   overflow-y: auto;
+  main { */
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  /* } */
 }
 
 .footer {
