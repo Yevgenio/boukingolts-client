@@ -4,11 +4,11 @@ import { RouterModule } from '@angular/router';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [CommonModule, RouterModule],
+  selector: 'app-home', // ensure this matches your routing configuration
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
+  standalone: true,
+  imports: [CommonModule, RouterModule],
   animations: [
     trigger('fadeInUp', [
       state('void', style({ opacity: 0, transform: 'translateY(20px)' })),
@@ -19,7 +19,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
     ])
   ]
 })
+
 export class HomeComponent {
   title = 'My Awesome Portfolio';
 }
-
