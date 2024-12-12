@@ -7,17 +7,17 @@
     <nav class="nav-buttons">
       <!-- Right-aligned buttons -->
       <div class="content-links">
-        <a routerLink="/">Home</a>
-        <a routerLink="/chats">Gallery</a>
-        <a routerLink="/deals">Events</a>
-        <a routerLink="/about">About</a>
+        <a routerLink="/">[ Home ]</a>
+        <a routerLink="/chats">[ Gallery ]</a>
+        <a routerLink="/deals">[ Events ]</a>
+        <a routerLink="/about">[ About ]</a>
       </div>
       <!-- Left-aligned buttons -->
       <div class="user-links">
-        <a *ngIf="authService.isLoggedIn()" routerLink="/settings">My Profile</a>
-        <a *ngIf="!authService.isLoggedIn()" routerLink="/login">Login</a>
-        <a *ngIf="!authService.isLoggedIn()" routerLink="/signup">Sign Up</a>
-        <a *ngIf="authService.isLoggedIn()" routerLink (click)="logout()">Logout</a>
+        <a *ngIf="authService.isLoggedIn()" routerLink="/settings">[ My Profile ]</a>
+        <a *ngIf="!authService.isLoggedIn()" routerLink="/login">[ Login ]</a>
+        <a *ngIf="!authService.isLoggedIn()" routerLink="/signup">[ Sign Up ]</a>
+        <a *ngIf="authService.isLoggedIn()" routerLink (click)="logout()">[ Logout ]</a>
       </div>
     </nav>
   </header>
