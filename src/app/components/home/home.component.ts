@@ -21,5 +21,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 })
 
 export class HomeComponent {
-  title = 'My Awesome Portfolio';
+  title = 'Yevgeni Boukingots';
+  description = 'Building web experiences';
+  button = 'Coming soon.';
 }
