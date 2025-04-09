@@ -3,7 +3,7 @@ export interface Memo {
     name?: string;
     description?: string;
 
-    type?: 'product' | 'chat' | 'external' | 'blog', // Enumerated options
+    type?: 'product' | 'event' | 'external' | 'blog', // Enumerated options
     targetId?: string,
     externalLink?: string,
     immediateRedirect?: Boolean,

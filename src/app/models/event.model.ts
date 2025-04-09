@@ -1,4 +1,4 @@
-export interface Chat {
+export interface Event {
     _id?: string; // Optional because it may not be present when creating a new product
     name: string;
     description: string;

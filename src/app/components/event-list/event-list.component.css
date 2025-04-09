@@ -1,11 +1,11 @@
-.chat-list {
+.event-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
   padding: 20px;
 }
 
-.chat-item {
+.event-item {
   position: relative;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -25,31 +25,31 @@
   gap: 5px;
 }
 
-.chat-item:hover .hover-buttons {
+.event-item:hover .hover-buttons {
   display: flex;
 }
 
-.chat-item:hover {
+.event-item:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
 }
 
-.chat-item h2 {
+.event-item h2 {
   font-size: 1.5em;
   margin-bottom: 10px;
 }
 
-.chat-item {
+.event-item {
   margin-bottom: 20px;
 }
 
-.chat-link {
+.event-link {
   display: block;
   color: inherit; /* Ensure the text color inherits from the parent */
   text-decoration: none; /* Remove default link styling */
 }
 
-.chat-image {
+.event-image {
   width: 100%; /* This will fill the width of the container */
   padding-top: 100%; /* This ensures the div is a square by making height equal to width */
   background-size: cover; /* Ensures the image fills the div and crops the longer side */
@@ -59,13 +59,13 @@
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Adds a shadow for depth */
 }
 
-.chat-item p {
+.event-item p {
   color: #666;
   font-size: 1em;
   margin-bottom: 10px;
 }
 
-.chat-item .price {
+.event-item .price {
   font-weight: bold;
   margin-bottom: 15px;
   font-size: 1.2em;

@@ -2,45 +2,45 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common'; // for functions such as ngFor
 import { ActivatedRoute } from '@angular/router';
-import { ChatService } from '../../services/chat.service';
-import { Chat } from '../../models/chat.model';
+import { EventService } from '../../services/event.service';
+import { Event } from '../../models/event.model';
 
 @Component({
-  selector: 'app-chat-details',
+  selector: 'app-event-details',
   standalone: true,
   imports: [RouterModule, CommonModule],
-  templateUrl: './chat-details.component.html',
-  styleUrl: './chat-details.component.css'
+  templateUrl: './event-details.component.html',
+  styleUrl: './event-details.component.css'
 })
-export class ChatDetailsComponent implements OnInit {
-  chat: Chat | undefined;
+export class EventDetailsComponent implements OnInit {
+  event: Event | undefined;
 
   @ViewChild('zoomedImage', { static: false }) zoomedImage!: ElementRef;
 
-  constructor(private route: ActivatedRoute, private chatService: ChatService) {}
+  constructor(private route: ActivatedRoute, private eventService: EventService) {}
 
   // ngOnInit(): void {
-  //   const chatId = this.route.snapshot.paramMap.get('_id');
+  //   const eventId = this.route.snapshot.paramMap.get('_id');
     
-  //   if (chatId) {
-  //     this.chatService.getChatById(chatId).subscribe((data) => {
-  //       this.chat = data;
+  //   if (eventId) {
+  //     this.eventService.getEventById(eventId).subscribe((data) => {
+  //       this.event = data;
   //     });
   //   }
   // }
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      const chatId = params.get('id');
-      if (chatId) {
-        this.chatService.getChatById(chatId).subscribe(
-          data => this.chat = data,
+      const eventId = params.get('id');
+      if (eventId) {
+        this.eventService.getEventById(eventId).subscribe(
+          data => this.event = data,
           error => {
-            console.error('Error fetching chat details:', error);
+            console.error('Error fetching event details:', error);
             // Handle error, e.g., show an error message
           }
         );
       } else {
-        console.error('Chat ID not found');
+        console.error('Event ID not found');
         // Handle missing ID case, e.g., redirect or show an error message
       }
     });
@@ -68,6 +68,6 @@ export class ChatDetailsComponent implements OnInit {
   }
   
 }
-// export class ChatDetailsComponent {
+// export class EventDetailsComponent {
 
 // }

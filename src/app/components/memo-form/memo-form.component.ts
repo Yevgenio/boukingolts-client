@@ -29,7 +29,7 @@ export class MemoFormComponent implements OnInit {
     this.memoForm = this.fb.group({
       name: ['', Validators.required],
       description: [''],
-      type: ['product', Validators.required], // 'product', 'chat', 'external', 'blog'
+      type: ['product', Validators.required], // 'product', 'event', 'external', 'blog'
       targetId: [''],
       externalLink: [''],
       immediateRedirect: [false],

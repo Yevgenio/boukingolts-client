@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Chat } from '../models/chat.model';
+import { Event } from '../models/event.model';
 import { CONFIG } from '../config';
 import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ChatService { // service worker
-  private baseUrl = `${CONFIG.apiBaseUrl}/api/chats`;
+export class EventService { // service worker
+  private baseUrl = `${CONFIG.apiBaseUrl}/api/events`;
   private uploadUrl = `${CONFIG.apiBaseUrl}/api/uploads`;
 
   constructor(private http: HttpClient) { }
@@ -22,8 +22,8 @@ export class ChatService { // service worker
     });
   }
 
-  getChats(): Observable<Chat[]> {
-    return this.http.get<Chat[]>(this.baseUrl).pipe(
+  getEvents(): Observable<Event[]> {
+    return this.http.get<Event[]>(this.baseUrl).pipe(
       map((data) =>
         data.map((data) => {
           if (data.imagePath) {
@@ -35,8 +35,8 @@ export class ChatService { // service worker
     );
   }
 
-  getChatById(id: string): Observable<Chat> {
-    return this.http.get<Chat>(`${this.baseUrl}/id/${id}`).pipe(
+  getEventById(id: string): Observable<Event> {
+    return this.http.get<Event>(`${this.baseUrl}/id/${id}`).pipe(
       map((data) => {
         if (data.imagePath) {
           data.imagePath = `${this.uploadUrl}/${data.imagePath}`;
@@ -46,8 +46,8 @@ export class ChatService { // service worker
     );
   }
 
-  // Add a new chat (requires admin access)
-  createChat(data: any): Observable<any> {
+  // Add a new event (requires admin access)
+  createEvent(data: any): Observable<any> {
     const formData = new FormData();
     Object.keys(data).forEach(key => {
       formData.append(key, data[key]);
@@ -57,33 +57,33 @@ export class ChatService { // service worker
     });
   }
 
-  // Update an existing chat (requires admin access)
-  updateChat(id: string, data: any): Observable<Chat> {
+  // Update an existing event (requires admin access)
+  updateEvent(id: string, data: any): Observable<Event> {
     const formData = new FormData();
     Object.keys(data).forEach(key => {
       formData.append(key, data[key]);
     });
-    return this.http.put<Chat>(`${this.baseUrl}/id/${id}`, formData, { 
+    return this.http.put<Event>(`${this.baseUrl}/id/${id}`, formData, { 
       headers: this.getAuthHeaders() 
     });
   }
 
-  // Delete a chat by its ID (requires admin access)
-  deleteChat(id: string): Observable<void> {
+  // Delete a event by its ID (requires admin access)
+  deleteEvent(id: string): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/id/${id}`, {
        headers: this.getAuthHeaders() 
       });
   }
 
-  // addChat(chat: Omit<Chat, '_id'>): Observable<Chat> {
-  //   return this.http.post<Chat>(this.apiUrl, chat);
+  // addEvent(event: Omit<Event, '_id'>): Observable<Event> {
+  //   return this.http.post<Event>(this.apiUrl, event);
   // }
 
-  // updateChat(chat: Chat): Observable<Chat> {
-  //   return this.http.put<Chat>(`${this.apiUrl}/${chat._id}`, chat);
+  // updateEvent(event: Event): Observable<Event> {
+  //   return this.http.put<Event>(`${this.apiUrl}/${event._id}`, event);
   // }
 
-  // deleteChat(id: string): Observable<void> {
+  // deleteEvent(id: string): Observable<void> {
   //   return this.http.delete<void>(`${this.apiUrl}/${id}`);
   // }
 }

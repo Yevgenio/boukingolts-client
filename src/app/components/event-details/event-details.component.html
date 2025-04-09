@@ -1,0 +1,16 @@
+<div *ngIf="event; else loading">
+  <h1>{{ event.name }}</h1>
+  <div class="event-detail">
+    <div class="image-zoom-container" (mousemove)="onMouseMove($event)" (mouseleave)="onMouseLeave()">
+      <img [src]="event.imagePath" alt="{{ event.name }}" class="event-image" />
+      <div class="zoomed-image" #zoomedImage [style.background-image]="'url(' + event.imagePath + ')'"></div>
+    </div>
+    <div class="event-info">
+      <p>{{ event.description }}</p>
+      <!-- <button>Add to Cart</button> -->
+    </div>
+  </div>
+</div>
+<ng-template #loading>
+  <p>Loading event details...</p>
+</ng-template>

@@ -10,9 +10,9 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { ProductFormComponent } from './components/product-form/product-form.component';
 
-import { ChatListComponent } from './components/chat-list/chat-list.component';
-import { ChatDetailsComponent } from './components/chat-details/chat-details.component';
-import { ChatFormComponent } from './components/chat-form/chat-form.component';
+import { EventListComponent } from './components/event-list/event-list.component';
+import { EventDetailsComponent } from './components/event-details/event-details.component';
+import { EventFormComponent } from './components/event-form/event-form.component';
 
 import { MemoListComponent } from './components/memo-list/memo-list.component';
 import { MemoDetailsComponent } from './components/memo-details/memo-details.component';
@@ -48,10 +48,10 @@ export const routes: Routes = [
       { path: 'products/add', component: ProductFormComponent, canActivate: [AdminGuard] },
       { path: 'products/edit/:id', component: ProductFormComponent }, // Edit existing product
 
-      { path: 'chats', component: ChatListComponent },
-      { path: 'chats/id/:id', component: ChatDetailsComponent },
-      { path: 'chats/add', component: ChatFormComponent, canActivate: [AdminGuard] },
-      { path: 'chats/edit/:id', component: ChatFormComponent }, // Edit existing chat
+      { path: 'events', component: EventListComponent },
+      { path: 'events/id/:id', component: EventDetailsComponent },
+      { path: 'events/add', component: EventFormComponent, canActivate: [AdminGuard] },
+      { path: 'events/edit/:id', component: EventFormComponent }, // Edit existing event
       
       { path: 'memos', component: MemoListComponent },
       { path: 'memos/id/:id', component: MemoDetailsComponent },
