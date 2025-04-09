@@ -67,4 +67,23 @@
   button:hover:not(:disabled) {
     background-color: #0056b3;
   }
-  
+
+  /* new form css  */
+  .gallery-preview {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .preview-item {
+    position: relative;
+  }
+  .preview-image {
+    width: 100px;
+    height: auto;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+  button {
+    display: block;
+    margin-top: 5px;
+  }

@@ -3,11 +3,12 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule  } from '@angul
 // import { CommonModule } from '@angular/common';
 import { ProductService } from '../../services/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DragDropModule,CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-memo-form',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, DragDropModule],
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.css']
 })
@@ -18,6 +19,8 @@ export class ProductFormComponent implements OnInit {
   productId: string | null = null; // To store the ID of the product being edited
   existingBarcodePath: string | undefined;
   existingImagePath: string | undefined;
+
+  selectedImages: (File | string)[] = []; // File (new) or string (existing image URL)
 
   constructor(
     private fb: FormBuilder,
@@ -61,14 +64,38 @@ export class ProductFormComponent implements OnInit {
     }
   }
 
-  onFileSelect(event: Event, field: string): void {
-    const file = (event.target as HTMLInputElement).files?.[0];
-    if (file) {
-      this.productForm.patchValue({ [field]: file });
-      this.productForm.get(field)?.updateValueAndValidity();
+  // onFileSelect(event: Event, field: string): void {
+  //   const file = (event.target as HTMLInputElement).files?.[0];
+  //   if (file) {
+  //     this.productForm.patchValue({ [field]: file });
+  //     this.productForm.get(field)?.updateValueAndValidity();
+  //   }
+  // }
+
+  onFilesSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files) {
+      for (let i = 0; i < input.files.length; i++) {
+        this.selectedImages.push(input.files[i]);
+      }
     }
   }
 
+  getImagePreview(img: File | string): string {
+    if (typeof img === 'string') {
+      return img; // already uploaded image URL
+    } else {
+      return URL.createObjectURL(img); // preview for new file
+    }
+  }
+
+  removeImage(index: number) {
+    this.selectedImages.splice(index, 1);
+  }
+
+  drop(event: CdkDragDrop<any[]>) {
+    moveItemInArray(this.selectedImages, event.previousIndex, event.currentIndex);
+  }
 
   onSubmit(): void {
     if (this.productForm.valid) {

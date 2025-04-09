@@ -15,6 +15,8 @@ import { Product } from '../../models/product.model';
 export class ProductDetailsComponent implements OnInit {
   product: Product | undefined;
 
+  selectedImage: (File | string)[] = []; // File (new) or string (existing image URL)
+
   @ViewChild('zoomedImage', { static: false }) zoomedImage!: ElementRef;
 
   constructor(private route: ActivatedRoute, private productService: ProductService) {}

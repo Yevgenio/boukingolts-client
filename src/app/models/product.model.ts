@@ -4,6 +4,10 @@ export interface Product {
     description?: string;
     price?: string;
     category?: string;
+    images?: {
+      url: string;         // URL to the image
+      public_id?: string;  // Optional: used for services like Cloudinary
+    }[];
     imagePath?: string;
     barcodePath?: string;
     stock?: number;
