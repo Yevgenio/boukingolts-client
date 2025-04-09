@@ -6,6 +6,7 @@
 }
 
 .chat-item {
+  position: relative;
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 20px;
@@ -13,6 +14,19 @@
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   background-color: #fff;
   font-family: 'Open Sans', sans-serif;
+}
+
+.hover-buttons {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.chat-item:hover .hover-buttons {
+  display: flex;
 }
 
 .chat-item:hover {
@@ -55,22 +69,34 @@
   font-weight: bold;
   margin-bottom: 15px;
   font-size: 1.2em;
-  color: #4CAF50;
+  color: #4c90af;
 }
 
 button {
-  padding: 10px 20px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 5px;
+  position: relative; /* Required for pseudo-element positioning */
+  padding: 10px 10px 7px 9px;
+  background-color: white; /* White background */
+  color: hsla(188, 63%, 20%, 0.9); /* Button text color */
+  border: 1px solid #ddd;
+  border-radius: 50px; /* Rounded corners for cloud effect */
   cursor: pointer;
   font-size: 1em;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  overflow: hidden; /* Ensures gradient doesn't overflow */
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25);
+  transition: transform 0.1s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 button:hover {
-  background-color: #45a049;
-  /* transform: translateY(-1px); */
-  /* box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25); */
+  background-color: whitesmoke;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.25);
+  /* transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25); */
+}
+
+button svg {
+  /* fill: currentColor;  */
+  stroke: currentColor; /* Inherit the text color of the button for outlines */
+  width: 20px; /* Optional: Adjust size */
+  height: 20px;
 }

@@ -47,7 +47,7 @@ export class ChatService { // service worker
   }
 
   // Add a new chat (requires admin access)
-  addChat(data: any): Observable<any> {
+  createChat(data: any): Observable<any> {
     const formData = new FormData();
     Object.keys(data).forEach(key => {
       formData.append(key, data[key]);
@@ -58,15 +58,19 @@ export class ChatService { // service worker
   }
 
   // Update an existing chat (requires admin access)
-  updateChat(chat: Chat): Observable<Chat> {
-    return this.http.put<Chat>(`${this.baseUrl}/${chat._id}`, chat, { 
+  updateChat(id: string, data: any): Observable<Chat> {
+    const formData = new FormData();
+    Object.keys(data).forEach(key => {
+      formData.append(key, data[key]);
+    });
+    return this.http.put<Chat>(`${this.baseUrl}/id/${id}`, formData, { 
       headers: this.getAuthHeaders() 
     });
   }
 
   // Delete a chat by its ID (requires admin access)
   deleteChat(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/${id}`, {
+    return this.http.delete<void>(`${this.baseUrl}/id/${id}`, {
        headers: this.getAuthHeaders() 
       });
   }

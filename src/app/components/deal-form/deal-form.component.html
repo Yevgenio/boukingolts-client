@@ -1,14 +1,14 @@
 <div class="form-container">
   <h1>הוסף הטבה חדשה</h1>
-  <form (ngSubmit)="onSubmit()" [formGroup]="dealForm" class="deal-form">
+  <form (ngSubmit)="onSubmit()" [formGroup]="dealForm" class="product-form">
     <div class="form-group">
       <label for="name">שם</label>
-      <input id="name" type="text" formControlName="name" placeholder="Enter deal name" required />
+      <input id="name" type="text" formControlName="name" placeholder="Enter product name" required />
     </div>
 
     <div class="form-group">
       <label for="description">תיאור</label>
-      <textarea id="description" formControlName="description" placeholder="Enter deal description"></textarea>
+      <textarea id="description" formControlName="description" placeholder="Enter product description"></textarea>
     </div>
 
     <div class="form-group">

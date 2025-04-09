@@ -2,45 +2,48 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common'; // for functions such as ngFor
 import { ActivatedRoute } from '@angular/router';
-import { DealService } from '../../services/product.service';
-import { Product } from '../../models/product.model';
+import { MemoService } from '../../services/memo.service';
+import { Memo } from '../../models/memo.model';
 
 @Component({
   selector: 'app-memo-details',
   standalone: true,
   imports: [RouterModule, CommonModule],
-  templateUrl: './product-details.component.html',
-  styleUrl: './product-details.component.css'
+  templateUrl: './memo-details.component.html',
+  styleUrl: './memo-details.component.css'
 })
-export class DealDetailsComponent implements OnInit {
-  product: Product | undefined;
+export class MemoDetailsComponent implements OnInit {
+  memo: Memo | undefined;
 
   @ViewChild('zoomedImage', { static: false }) zoomedImage!: ElementRef;
 
-  constructor(private route: ActivatedRoute, private dealService: DealService) {}
+  constructor(
+    private route: ActivatedRoute, 
+    private memoService: MemoService
+  ) {}
 
   // ngOnInit(): void {
-  //   const dealId = this.route.snapshot.paramMap.get('_id');
+  //   const memoId = this.route.snapshot.paramMap.get('_id');
     
-  //   if (dealId) {
-  //     this.dealService.getDealById(dealId).subscribe((data) => {
-  //       this.product = data;
+  //   if (memoId) {
+  //     this.memoService.getMemoById(memoId).subscribe((data) => {
+  //       this.memo = data;
   //     });
   //   }
   // }
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      const dealId = params.get('id');
-      if (dealId) {
-        this.dealService.getDealById(dealId).subscribe(
-          data => this.product = data,
+      const memoId = params.get('id');
+      if (memoId) {
+        this.memoService.getMemoById(memoId).subscribe(
+          data => this.memo = data,
           error => {
-            console.error('Error fetching product details:', error);
+            console.error('Error fetching memo details:', error);
             // Handle error, e.g., show an error message
           }
         );
       } else {
-        console.error('Product ID not found');
+        console.error('Memo ID not found');
         // Handle missing ID case, e.g., redirect or show an error message
       }
     });
@@ -68,6 +71,6 @@ export class DealDetailsComponent implements OnInit {
   }
   
 }
-// export class DealDetailsComponent {
+// export class MemoDetailsComponent {
 
 // }

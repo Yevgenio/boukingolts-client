@@ -1,0 +1,16 @@
+<div *ngIf="memo; else loading">
+  <h1>{{ memo.name }}</h1>
+  <div class="memo-detail">
+    <div class="image-zoom-container" (mousemove)="onMouseMove($event)" (mouseleave)="onMouseLeave()">
+      <img [src]="memo.imagePath" alt="{{ memo.name }}" class="memo-image" />
+      <div class="zoomed-image" #zoomedImage [style.background-image]="'url(' + memo.imagePath + ')'"></div>
+    </div>
+    <div class="memo-info">
+      <div class="description">{{ memo.description }}</div>
+      <!-- <button>Add to Cart</button> -->
+    </div>
+  </div>
+</div>
+<ng-template #loading>
+  <p>Loading memo details...</p>
+</ng-template>

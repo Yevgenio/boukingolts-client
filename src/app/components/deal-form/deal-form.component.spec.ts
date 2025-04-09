@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DealFormComponent } from './deal-form.component';
+import { DealFormComponent } from './product-form.component';
 
 describe('DealFormComponent', () => {
   let component: DealFormComponent;

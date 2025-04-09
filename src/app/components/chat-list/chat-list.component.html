@@ -1,17 +1,34 @@
  <h1>קבוצות</h1>
  <button *ngIf="authService.isAdmin()" routerLink="/chats/add">צור חדש</button>
 
-<div class="chat-list">
+ <div class="chat-list">
   <div *ngFor="let chat of chats" class="chat-item">
-    <!-- Wrap the entire chat-item content (excluding the button) in a link -->
     <a [routerLink]="['/chats/id', chat._id]" class="chat-link">
-      <h2>{{ chat.name }}</h2>
       <div
         class="chat-image"
         [ngStyle]="{ 'background-image': 'url(' + chat.imagePath + ')' }"
       ></div>
+      <h2>{{ chat.name }}</h2>
       <p>{{ chat.description }}</p>
     </a>
-    <button>Add to Cart</button>
+    <!-- Hover Buttons -->
+    <div class="hover-buttons">
+      <button (click)="editChat(chat)">
+        <svg class="feather feather-edit" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+          <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+        </svg>
+      </button>
+      <button (click)="removeChat(chat)">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+          <!-- Circle -->
+          <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2" />
+          <!-- Diagonal lines forming the X -->
+          <line x1="8" y1="8" x2="16" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          <line x1="16" y1="8" x2="8" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </svg>             
+      </button>
+    </div>
   </div>
 </div>
+

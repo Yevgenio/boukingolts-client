@@ -6,13 +6,17 @@ import { AdminGuard } from './guards/admin.guard';
 import { LayoutComponent } from './components/layout/layout.component'; 
 import { HomeComponent } from './components/home/home.component';
 
-import { DealListComponent } from './components/deal-list/deal-list.component';
-import { DealDetailsComponent } from './components/deal-details/deal-details.component';
-import { DealFormComponent } from './components/deal-form/deal-form.component';
+import { DealListComponent } from './components/product-list/product-list.component';
+import { DealDetailsComponent } from './components/product-details/product-details.component';
+import { DealFormComponent } from './components/product-form/product-form.component';
 
 import { ChatListComponent } from './components/chat-list/chat-list.component';
 import { ChatDetailsComponent } from './components/chat-details/chat-details.component';
 import { ChatFormComponent } from './components/chat-form/chat-form.component';
+
+import { MemoListComponent } from './components/memo-list/memo-list.component';
+import { MemoDetailsComponent } from './components/memo-details/memo-details.component';
+import { MemoFormComponent } from './components/memo-form/memo-form.component';
 
 import { UserSignupComponent } from './components/user-signup/user-signup.component';
 import { UserLoginComponent } from './components/user-login/user-login.component';
@@ -26,7 +30,7 @@ import { ErrorMessageComponent } from './components/error-message/error-message.
 //     { path: '', component: HomeComponent },
 //     { path: 'home', component: HomeComponent },
 //     { path: 'shop', component: DealListComponent },
-//     { path: 'deal/:id', component: DealDetailsComponent },
+//     { path: 'product/:id', component: DealDetailsComponent },
 //     //{ path: 'cart', component: CartComponent },
 //     { path: '**', redirectTo: 'home', pathMatch: 'prefix' } // Redirect unknown paths to Home
 //   ];
@@ -42,10 +46,17 @@ export const routes: Routes = [
       { path: 'deals', component: DealListComponent },
       { path: 'deals/id/:id', component: DealDetailsComponent },
       { path: 'deals/add', component: DealFormComponent, canActivate: [AdminGuard] },
+      { path: 'deals/edit/:id', component: DealFormComponent }, // Edit existing product
 
       { path: 'chats', component: ChatListComponent },
       { path: 'chats/id/:id', component: ChatDetailsComponent },
       { path: 'chats/add', component: ChatFormComponent, canActivate: [AdminGuard] },
+      { path: 'chats/edit/:id', component: ChatFormComponent }, // Edit existing chat
+      
+      { path: 'memos', component: MemoListComponent },
+      { path: 'memos/id/:id', component: MemoDetailsComponent },
+      { path: 'memos/add', component: MemoFormComponent, canActivate: [AdminGuard] },
+      { path: 'memos/edit/:id', component: MemoFormComponent }, // Edit existing product
 
       { path: 'signup', component: UserSignupComponent },
       { path: 'login', component: UserLoginComponent },

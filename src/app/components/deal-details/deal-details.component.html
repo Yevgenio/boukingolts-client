@@ -1,18 +1,19 @@
-<div *ngIf="deal; else loading">
-  <h1>{{ deal.name }}</h1>
-  <div class="deal-detail">
+<div *ngIf="product; else loading">
+  <h1>{{ product.name }}</h1>
+  <div class="product-detail">
     <div class="image-zoom-container" (mousemove)="onMouseMove($event)" (mouseleave)="onMouseLeave()">
-      <img [src]="deal.imagePath" alt="{{ deal.name }}" class="deal-image" />
-      <div class="zoomed-image" #zoomedImage [style.background-image]="'url(' + deal.imagePath + ')'"></div>
+      <img [src]="product.imagePath" alt="{{ product.name }}" class="product-image" />
+      <div class="zoomed-image" #zoomedImage [style.background-image]="'url(' + product.imagePath + ')'"></div>
     </div>
-    <div class="deal-info">
-      <p>{{ deal.description }}</p>
-      <p class="price">Price: ₪{{ deal.price }}</p>
-      <img [src]="deal.barcodePath" alt="{{ deal.name }}" class="deal-barcode" />
+    <div class="product-info">
+      <div class="description">{{ product.description }}</div>
+      <div class="barcode-container">
+        <img [src]="product.barcodePath" alt="{{ product.name }}" class="product-barcode" />
+      </div>
       <!-- <button>Add to Cart</button> -->
     </div>
   </div>
 </div>
 <ng-template #loading>
-  <p>Loading deal details...</p>
+  <p>Loading product details...</p>
 </ng-template>

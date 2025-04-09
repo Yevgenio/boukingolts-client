@@ -1,22 +1,22 @@
 <div class="auth-container">
-    <h1>Sign Up</h1>
+    <h1>הרשמה</h1>
     <form (ngSubmit)="onSignUp()" [formGroup]="signUpForm">
       <div class="form-group">
-        <label for="username">Username</label>
+        <label for="username">שם</label>
         <input id="username" formControlName="username" type="text" required />
       </div>
       
       <div class="form-group">
-        <label for="email">Email</label>
+        <label for="email">אימייל</label>
         <input id="email" formControlName="email" type="email" required />
       </div>
       
       <div class="form-group">
-        <label for="password">Password</label>
+        <label for="password">סיסמה</label>
         <input id="password" formControlName="password" type="password" required />
       </div>
       
-      <button type="submit" [disabled]="signUpForm.invalid">Sign Up</button>
+      <button type="submit" [disabled]="signUpForm.invalid">הרשמה</button>
     </form>
   </div>
   

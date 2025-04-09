@@ -69,6 +69,7 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    background: linear-gradient(to bottom right, #f8a4a4, #02388a);
   /* } */
 }
 

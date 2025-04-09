@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule  } from '@angular/forms';
 // import { CommonModule } from '@angular/common';
 import { ChatService } from '../../services/chat.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-chat-form',
@@ -13,10 +14,15 @@ import { ChatService } from '../../services/chat.service';
 export class ChatFormComponent implements OnInit {
   chatForm!: FormGroup;
   selectedFiles: { [key: string]: File } = {};
+  isEditMode = false; // To track whether we're editing or creating a chat
+  chatId: string | null = null; // To store the ID of the chat being edited
+  existingImagePath: string | undefined;
 
   constructor(
     private fb: FormBuilder,
-    private chatService: ChatService
+    private chatService: ChatService,
+    private route: ActivatedRoute, // To fetch route parameters
+    private router: Router // To navigate after submission
   ) {}
 
   ngOnInit(): void {
@@ -29,6 +35,16 @@ export class ChatFormComponent implements OnInit {
       endsAt: [''],
       imagePath: [''],
     });
+
+    // Check if we're in edit mode (i.e., if a chat ID is in the route)
+    this.chatId = this.route.snapshot.paramMap.get('id');
+    if (this.chatId) {
+      this.isEditMode = true;
+      // Fetch the chat details and populate the form
+      this.chatService.getChatById(this.chatId).subscribe(chat => {
+        this.chatForm.patchValue(chat);
+      });
+    }
   }
 
   onFileSelect(event: Event, field: string): void {
@@ -39,22 +55,19 @@ export class ChatFormComponent implements OnInit {
     }
   }
 
-
   onSubmit(): void {
     if (this.chatForm.valid) {
-      // Submit the form data to the chat service
-      const newChat = this.chatForm.value;
-      console.log(newChat);
-      // Call service to add the chat
-      this.chatService.addChat(newChat).subscribe({
-        next: () => {
-          alert('Chat added successfully!');
-          this.chatForm.reset();
-        },
-        error: (err) => {
-          console.error('Error adding chat', err);
-        }
-      });
+      if (this.isEditMode) {
+        // Update the existing chat
+        this.chatService.updateChat(this.chatId!, this.chatForm.value).subscribe(() => {
+          this.router.navigate(['/chats']);
+        });
+      } else {
+        // Create a new chat
+        this.chatService.createChat(this.chatForm.value).subscribe(() => {
+          this.router.navigate(['/chats']);
+        });
+      }
     }
   }
 }

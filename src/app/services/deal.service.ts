@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Deal } from '../models/deal.model';
+import { Product } from '../models/product.model';
 import { CONFIG } from '../config';
 import { map } from 'rxjs/operators';
 
@@ -22,67 +22,71 @@ export class DealService { // service worker
     });
   }
 
-  getDeals(): Observable<Deal[]> {
-    return this.http.get<Deal[]>(this.baseUrl).pipe(
+  getDeals(): Observable<Product[]> {
+    return this.http.get<Product[]>(this.baseUrl).pipe(
       map((deals) =>
-        deals.map((deal) => {
-          if (deal.imagePath) {
-            deal.imagePath = `${this.uploadUrl}/${deal.imagePath}`;
+        deals.map((product) => {
+          if (product.imagePath) {
+            product.imagePath = `${this.uploadUrl}/${product.imagePath}`;
           }
-          if (deal.barcodePath) {
-            deal.barcodePath = `${this.uploadUrl}/${deal.barcodePath}`;
+          if (product.barcodePath) {
+            product.barcodePath = `${this.uploadUrl}/${product.barcodePath}`;
           }
-          return deal;
+          return product;
         })
       )
     );
   }
 
-  getDealById(id: string): Observable<Deal> {
-    return this.http.get<Deal>(`${this.baseUrl}/id/${id}`).pipe(
-      map((deal) => {
-        if (deal.imagePath) {
-          deal.imagePath = `${this.uploadUrl}/${deal.imagePath}`;
+  getDealById(id: string): Observable<Product> {
+    return this.http.get<Product>(`${this.baseUrl}/id/${id}`).pipe(
+      map((product) => {
+        if (product.imagePath) {
+          product.imagePath = `${this.uploadUrl}/${product.imagePath}`;
         }
-        if (deal.barcodePath) {
-          deal.barcodePath = `${this.uploadUrl}/${deal.barcodePath}`;
+        if (product.barcodePath) {
+          product.barcodePath = `${this.uploadUrl}/${product.barcodePath}`;
         }
-        return deal;
+        return product;
       })
     );
   }
 
-  addDeal(deal: any): Observable<any> {
+  // Add a new product (requires admin access)
+  createDeal(data: any): Observable<any> {
     const formData = new FormData();
-    Object.keys(deal).forEach(key => {
-      formData.append(key, deal[key]);
+    Object.keys(data).forEach(key => {
+      formData.append(key, data[key]);
     });
     return this.http.post(this.baseUrl, formData, { 
       headers: this.getAuthHeaders() 
     });
   }
-  
 
-  // Update an existing deal (requires admin access)
-  updateDeal(deal: Deal): Observable<Deal> {
-    return this.http.put<Deal>(`${this.baseUrl}/${deal._id}`, deal, { 
+  // Update an existing product (requires admin access)
+  updateDeal(id: string, data: any): Observable<Product> {
+    const formData = new FormData();
+    Object.keys(data).forEach(key => {
+      formData.append(key, data[key]);
+    });
+    return this.http.put<Product>(`${this.baseUrl}/id/${id}`, formData, { 
       headers: this.getAuthHeaders() 
     });
   }
 
-  // Delete a deal by its ID (requires admin access)
+  // Delete a product by its ID (requires admin access)
   deleteDeal(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/${id}`, {
+    return this.http.delete<void>(`${this.baseUrl}/id/${id}`, {
        headers: this.getAuthHeaders() 
       });
   }
 
-  // addDeal(deal: Omit<Deal, '_id'>): Observable<Deal> {
-  //   return this.http.post<Deal>(this.apiUrl, deal);
+  // addDeal(product: Omit<Product, '_id'>): Observable<Product> {
+  //   return this.http.post<Product>(this.apiUrl, product);
   // }
 
-  // updateDeal(deal: Deal): Observable<Deal> {
-  //   return this.http.put<Deal>(`${this.apiUrl}/${deal._id}`, deal);
+  // updateDeal(product: Product): Observable<Product> {
+  //   return this.http.put<Product>(`${this.apiUrl}/${product._id}`, product);
   // }
 
   // deleteDeal(id: string): Observable<void> {
