@@ -1,6 +1,6 @@
 <div class="form-container">
   <h1>הוסף הטבה חדשה</h1>
-  <form (ngSubmit)="onSubmit()" [formGroup]="dealForm" class="product-form">
+  <form (ngSubmit)="onSubmit()" [formGroup]="productForm" class="product-form">
     <div class="form-group">
       <label for="name">שם</label>
       <input id="name" type="text" formControlName="name" placeholder="Enter product name" required />
@@ -41,6 +41,6 @@
       <input id="endsAt" type="date" formControlName="endsAt" />
     </div>
 
-    <button type="submit" [disabled]="dealForm.invalid">שלח</button>
+    <button type="submit" [disabled]="productForm.invalid">שלח</button>
   </form>
 </div>

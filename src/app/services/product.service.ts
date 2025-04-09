@@ -8,8 +8,8 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class DealService { // service worker
-  private baseUrl = `${CONFIG.apiBaseUrl}/api/deals`;
+export class ProductService { // service worker
+  private baseUrl = `${CONFIG.apiBaseUrl}/api/products`;
   private uploadUrl = `${CONFIG.apiBaseUrl}/api/uploads`;
 
   constructor(private http: HttpClient) { }
@@ -22,10 +22,10 @@ export class DealService { // service worker
     });
   }
 
-  getDeals(): Observable<Product[]> {
+  getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.baseUrl).pipe(
-      map((deals) =>
-        deals.map((product) => {
+      map((products) =>
+        products.map((product) => {
           if (product.imagePath) {
             product.imagePath = `${this.uploadUrl}/${product.imagePath}`;
           }
@@ -38,7 +38,7 @@ export class DealService { // service worker
     );
   }
 
-  getDealById(id: string): Observable<Product> {
+  getProductById(id: string): Observable<Product> {
     return this.http.get<Product>(`${this.baseUrl}/id/${id}`).pipe(
       map((product) => {
         if (product.imagePath) {
@@ -53,7 +53,7 @@ export class DealService { // service worker
   }
 
   // Add a new product (requires admin access)
-  createDeal(data: any): Observable<any> {
+  createProduct(data: any): Observable<any> {
     const formData = new FormData();
     Object.keys(data).forEach(key => {
       formData.append(key, data[key]);
@@ -64,7 +64,7 @@ export class DealService { // service worker
   }
 
   // Update an existing product (requires admin access)
-  updateDeal(id: string, data: any): Observable<Product> {
+  updateProduct(id: string, data: any): Observable<Product> {
     const formData = new FormData();
     Object.keys(data).forEach(key => {
       formData.append(key, data[key]);
@@ -75,21 +75,21 @@ export class DealService { // service worker
   }
 
   // Delete a product by its ID (requires admin access)
-  deleteDeal(id: string): Observable<void> {
+  deleteProduct(id: string): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/id/${id}`, {
        headers: this.getAuthHeaders() 
       });
   }
 
-  // addDeal(product: Omit<Product, '_id'>): Observable<Product> {
+  // addProduct(product: Omit<Product, '_id'>): Observable<Product> {
   //   return this.http.post<Product>(this.apiUrl, product);
   // }
 
-  // updateDeal(product: Product): Observable<Product> {
+  // updateProduct(product: Product): Observable<Product> {
   //   return this.http.put<Product>(`${this.apiUrl}/${product._id}`, product);
   // }
 
-  // deleteDeal(id: string): Observable<void> {
+  // deleteProduct(id: string): Observable<void> {
   //   return this.http.delete<void>(`${this.apiUrl}/${id}`);
   // }
 }

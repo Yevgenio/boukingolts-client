@@ -6,9 +6,9 @@ import { AdminGuard } from './guards/admin.guard';
 import { LayoutComponent } from './components/layout/layout.component'; 
 import { HomeComponent } from './components/home/home.component';
 
-import { DealListComponent } from './components/product-list/product-list.component';
-import { DealDetailsComponent } from './components/product-details/product-details.component';
-import { DealFormComponent } from './components/product-form/product-form.component';
+import { ProductListComponent } from './components/product-list/product-list.component';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { ProductFormComponent } from './components/product-form/product-form.component';
 
 import { ChatListComponent } from './components/chat-list/chat-list.component';
 import { ChatDetailsComponent } from './components/chat-details/chat-details.component';
@@ -29,8 +29,8 @@ import { ErrorMessageComponent } from './components/error-message/error-message.
 // export const routes: Routes = [  
 //     { path: '', component: HomeComponent },
 //     { path: 'home', component: HomeComponent },
-//     { path: 'shop', component: DealListComponent },
-//     { path: 'product/:id', component: DealDetailsComponent },
+//     { path: 'shop', component: ProductListComponent },
+//     { path: 'product/:id', component: ProductDetailsComponent },
 //     //{ path: 'cart', component: CartComponent },
 //     { path: '**', redirectTo: 'home', pathMatch: 'prefix' } // Redirect unknown paths to Home
 //   ];
@@ -43,10 +43,10 @@ export const routes: Routes = [
 
       { path: 'home', component: HomeComponent },
 
-      { path: 'deals', component: DealListComponent },
-      { path: 'deals/id/:id', component: DealDetailsComponent },
-      { path: 'deals/add', component: DealFormComponent, canActivate: [AdminGuard] },
-      { path: 'deals/edit/:id', component: DealFormComponent }, // Edit existing product
+      { path: 'products', component: ProductListComponent },
+      { path: 'products/id/:id', component: ProductDetailsComponent },
+      { path: 'products/add', component: ProductFormComponent, canActivate: [AdminGuard] },
+      { path: 'products/edit/:id', component: ProductFormComponent }, // Edit existing product
 
       { path: 'chats', component: ChatListComponent },
       { path: 'chats/id/:id', component: ChatDetailsComponent },

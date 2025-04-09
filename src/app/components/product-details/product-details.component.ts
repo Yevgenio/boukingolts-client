@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common'; // for functions such as ngFor
 import { ActivatedRoute } from '@angular/router';
-import { DealService } from '../../services/product.service';
+import { ProductService } from '../../services/product.service';
 import { Product } from '../../models/product.model';
 
 @Component({
@@ -12,27 +12,27 @@ import { Product } from '../../models/product.model';
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.css'
 })
-export class DealDetailsComponent implements OnInit {
+export class ProductDetailsComponent implements OnInit {
   product: Product | undefined;
 
   @ViewChild('zoomedImage', { static: false }) zoomedImage!: ElementRef;
 
-  constructor(private route: ActivatedRoute, private dealService: DealService) {}
+  constructor(private route: ActivatedRoute, private productService: ProductService) {}
 
   // ngOnInit(): void {
-  //   const dealId = this.route.snapshot.paramMap.get('_id');
+  //   const productId = this.route.snapshot.paramMap.get('_id');
     
-  //   if (dealId) {
-  //     this.dealService.getDealById(dealId).subscribe((data) => {
+  //   if (productId) {
+  //     this.productService.getProductById(productId).subscribe((data) => {
   //       this.product = data;
   //     });
   //   }
   // }
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      const dealId = params.get('id');
-      if (dealId) {
-        this.dealService.getDealById(dealId).subscribe(
+      const productId = params.get('id');
+      if (productId) {
+        this.productService.getProductById(productId).subscribe(
           data => this.product = data,
           error => {
             console.error('Error fetching product details:', error);
@@ -68,6 +68,6 @@ export class DealDetailsComponent implements OnInit {
   }
   
 }
-// export class DealDetailsComponent {
+// export class ProductDetailsComponent {
 
 // }

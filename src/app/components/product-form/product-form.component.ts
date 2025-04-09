@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule  } from '@angular/forms';
 // import { CommonModule } from '@angular/common';
-import { DealService } from '../../services/product.service';
+import { ProductService } from '../../services/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -11,23 +11,23 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.css']
 })
-export class DealFormComponent implements OnInit {
-  dealForm!: FormGroup;
+export class ProductFormComponent implements OnInit {
+  productForm!: FormGroup;
   selectedFiles: { [key: string]: File } = {};
   isEditMode = false; // To track whether we're editing or creating a product
-  dealId: string | null = null; // To store the ID of the product being edited
+  productId: string | null = null; // To store the ID of the product being edited
   existingBarcodePath: string | undefined;
   existingImagePath: string | undefined;
 
   constructor(
     private fb: FormBuilder,
-    private dealService: DealService,
+    private productService: ProductService,
     private route: ActivatedRoute, // To fetch route parameters
     private router: Router // To navigate after submission
   ) {}
 
   ngOnInit(): void {
-    this.dealForm = this.fb.group({
+    this.productForm = this.fb.group({
       name: ['', Validators.required],
       description: [''],
       category: [''],
@@ -38,14 +38,14 @@ export class DealFormComponent implements OnInit {
       barcodePath: [''],
     });
   
-    const dealId = this.route.snapshot.paramMap.get('id');
-    if (dealId) {
+    const productId = this.route.snapshot.paramMap.get('id');
+    if (productId) {
       this.isEditMode = true;
-      this.dealId = dealId;
+      this.productId = productId;
   
       // Fetch the existing product data
-      this.dealService.getDealById(dealId).subscribe(product => {
-        this.dealForm.patchValue({
+      this.productService.getProductById(productId).subscribe(product => {
+        this.productForm.patchValue({
           name: product.name,
           description: product.description,
           category: product.category,
@@ -64,32 +64,32 @@ export class DealFormComponent implements OnInit {
   onFileSelect(event: Event, field: string): void {
     const file = (event.target as HTMLInputElement).files?.[0];
     if (file) {
-      this.dealForm.patchValue({ [field]: file });
-      this.dealForm.get(field)?.updateValueAndValidity();
+      this.productForm.patchValue({ [field]: file });
+      this.productForm.get(field)?.updateValueAndValidity();
     }
   }
 
 
   onSubmit(): void {
-    if (this.dealForm.valid) {
+    if (this.productForm.valid) {
       // Prepare the payload
-      const dealData = { ...this.dealForm.value };
+      const productData = { ...this.productForm.value };
   
       // Convert empty strings to null
-      Object.keys(dealData).forEach((key) => {
-        if (dealData[key] === '') {
-          dealData[key] = null;
+      Object.keys(productData).forEach((key) => {
+        if (productData[key] === '') {
+          productData[key] = null;
         }
       });
       if (this.isEditMode) {
         // Update the existing product
-        this.dealService.updateDeal(this.dealId!, this.dealForm.value).subscribe(() => {
-          this.router.navigate(['/deals']);
+        this.productService.updateProduct(this.productId!, this.productForm.value).subscribe(() => {
+          this.router.navigate(['/products']);
         });
       } else {
         // Create a new product
-        this.dealService.createDeal(this.dealForm.value).subscribe(() => {
-          this.router.navigate(['/deals']);
+        this.productService.createProduct(this.productForm.value).subscribe(() => {
+          this.router.navigate(['/products']);
         });
       }
     }
