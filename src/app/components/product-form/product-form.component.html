@@ -16,31 +16,11 @@
       <input id="category" type="text" formControlName="category" placeholder="Enter category" />
     </div>
 
-    <!-- <div class="form-group">
-      <label for="image">תמונה</label>
-      <input id="imagePath" type="file" (change)="onFileSelect($event, 'imagePath')" />
-    </div>
-
     <div class="form-group">
-      <label for="barcode">ברקוד</label>
-      <input id="imagePath" type="file" (change)="onFileSelect($event, 'barcodePath')" />
-    </div> -->
-
-    <input type="file" multiple (change)="onFilesSelected($event)" />
-
-    <h3>Product Gallery</h3>
-
-    <!-- File Input -->
-    <input type="file" multiple (change)="onFilesSelected($event)" />
-
-    <!-- Preview and Reorder List -->
-    <div cdkDropList (cdkDropListDropped)="drop($event)" class="gallery-preview">
-      <div *ngFor="let img of selectedImages; let i = index" cdkDrag class="preview-item">
-        <img [src]="getImagePreview(img)" alt="Preview" class="preview-image" />
-        <button type="button" (click)="removeImage(i)">Remove</button>
-      </div>
+      <label for="images">Gallery</label>
+      <input id="images" type="file" (change)="onFilesSelect($event)" multiple />
     </div>
 
-    <button type="submit" [disabled]="productForm.invalid">שלח</button>
+    <button type="submit" [disabled]="productForm.invalid">Submit</button>
   </form>
 </div>

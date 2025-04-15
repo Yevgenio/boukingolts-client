@@ -17,15 +17,12 @@
   
   <div class="product-detail">
     <div class="image-zoom-container" (mousemove)="onMouseMove($event)" (mouseleave)="onMouseLeave()">
-      <img [src]="product.imagePath" alt="{{ product.name }}" class="product-image" />
-      <div class="zoomed-image" #zoomedImage [style.background-image]="'url(' + product.imagePath + ')'"></div>
+      <img [src]="product.images?.[0]?.url" alt="{{ product.name }}" class="product-image" />
+      <div class="zoomed-image" #zoomedImage [style.background-image]="'url(' + product.images?.[0]?.url + ')'"></div>
     </div>
     <div class="product-info">
-      <div class="description">{{ product.description }}</div>
-      <div class="barcode-container">
-        <img [src]="product.barcodePath" alt="{{ product.name }}" class="product-barcode" />
-      </div>
-      <!-- <button>Add to Cart</button> -->
+      <p>{{ product.description }}</p>
+      <p>{{ product.category }}</p>
     </div>
   </div>
 </div>

@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule  } from '@angular/forms';
-// import { CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { MemoService } from '../../services/memo.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-memo-form',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './memo-form.component.html',
   styleUrls: ['./memo-form.component.css']
 })

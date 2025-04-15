@@ -6,7 +6,7 @@
     <a [routerLink]="['/products/id', product._id]" class="product-link">
       <div
         class="product-image"
-        [ngStyle]="{ 'background-image': 'url(' + product.imagePath + ')' }"
+        [ngStyle]="{ 'background-image': 'url(' + product.images?.[0]?.url + ')' }"
       ></div>
       <!-- <img [src]="product.images[0]?.url" alt="Main image" /> -->
       <h2>{{ product.name }}</h2>

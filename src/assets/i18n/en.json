@@ -1,0 +1,17 @@
+{
+    "appVariant": "products",
+    "titles": {
+      "products": {
+        "homeTitle": "Our Products",
+        "details": "Product Details"
+      },
+      "deals": {
+        "homeTitle": "Hot Deals",
+        "details": "Deal Details"
+      }
+    },
+    "buttons": {
+      "submit": "Submit",
+      "cancel": "Cancel"
+    }
+  }

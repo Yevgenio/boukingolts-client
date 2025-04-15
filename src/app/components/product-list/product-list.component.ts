@@ -15,6 +15,7 @@ import { AuthService } from '../../services/auth.service';
 export class ProductListComponent implements OnInit {
   products: Product[] = [];
 
+
   constructor(public authService: AuthService, private productService: ProductService, private router: Router) { }
 
   ngOnInit(): void {
@@ -22,9 +23,13 @@ export class ProductListComponent implements OnInit {
       this.products = data;
       this.products.forEach(product => {
         product.name = product.name?.substring(0, 30);
+        console.log('product:', product);
         product.description = product.description?.substring(0, 30);
+        product.category = product.category?.substring(0, 30);
+        console.log('image:', product.images);
       });
     });
+    
   }
 
   isLoggedIn(): void {
@@ -44,6 +49,3 @@ export class ProductListComponent implements OnInit {
     }
   }
 }
-// export class ProductListComponent {
-  
-// }
