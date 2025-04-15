@@ -15,38 +15,38 @@ import { Product } from '../../models/product.model';
 export class ProductDetailsComponent implements OnInit {
   product: Product | undefined;
 
-  selectedImage: (File | string)[] = []; // File (new) or string (existing image URL)
+  // selectedImage: (File | string)[] = []; // File (new) or string (existing image URL)
 
   @ViewChild('zoomedImage', { static: false }) zoomedImage!: ElementRef;
 
   constructor(private route: ActivatedRoute, private productService: ProductService) {}
 
-  // ngOnInit(): void {
-  //   const productId = this.route.snapshot.paramMap.get('_id');
-    
-  //   if (productId) {
-  //     this.productService.getProductById(productId).subscribe((data) => {
-  //       this.product = data;
-  //     });
-  //   }
-  // }
-  ngOnInit(): void {
+  selectedImage: string | undefined; // or URL of the first image
+
+  ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      const productId = params.get('id');
-      if (productId) {
-        this.productService.getProductById(productId).subscribe(
-          data => this.product = data,
-          error => {
-            console.error('Error fetching product details:', error);
-            // Handle error, e.g., show an error message
-          }
-        );
-      } else {
-        console.error('Product ID not found');
-        // Handle missing ID case, e.g., redirect or show an error message
+      const id = params.get('id');
+      if (id) {
+        this.productService.getProductById(id).subscribe(product => {
+          this.product = product;
+          this.selectedImage = product.images?.[0]?.url;
+        });
       }
     });
   }
+  
+  onSelectImage(imageUrl: string) {
+    this.selectedImage = imageUrl;
+  }
+
+  @ViewChild('thumbnailScroll') thumbnailScroll!: ElementRef;
+
+  scrollThumbnails(direction: number): void {
+    const scrollContainer = this.thumbnailScroll?.nativeElement;
+    if (scrollContainer) {
+      scrollContainer.scrollTop += direction * 60; // Scroll by one thumbnail height
+    }
+}
 
   onMouseMove(event: MouseEvent) {
     const container = event.currentTarget as HTMLElement;
@@ -70,6 +70,3 @@ export class ProductDetailsComponent implements OnInit {
   }
   
 }
-// export class ProductDetailsComponent {
-
-// }

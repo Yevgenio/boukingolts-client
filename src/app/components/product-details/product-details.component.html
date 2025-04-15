@@ -1,31 +1,46 @@
 <div *ngIf="product; else loading">
-  <h1>{{ product.name }}</h1>
-
-  <!-- <div class="main-image">
-    <img [src]="selectedImage?.url || product.images[0]?.url" />
-  </div>
-  
-  <div class="thumbnail-gallery">
-    <img
-      *ngFor="let img of product.images"
-      [src]="img.url"
-      (click)="selectedImage = img"
-      class="thumbnail"
-      [class.active]="img === selectedImage"
-    />
-  </div> -->
-  
   <div class="product-detail">
-    <div class="image-zoom-container" (mousemove)="onMouseMove($event)" (mouseleave)="onMouseLeave()">
-      <img [src]="product.images?.[0]?.url" alt="{{ product.name }}" class="product-image" />
-      <div class="zoomed-image" #zoomedImage [style.background-image]="'url(' + product.images?.[0]?.url + ')'"></div>
+    <div class="image-section">
+      
+      <!-- Vertical Thumbnail List with Scroll Controls -->
+      <div class="thumbnail-column">
+        <button class="scroll-btn" (click)="scrollThumbnails(-1)">▲</button>
+        
+        <div class="thumbnail-scroll" #thumbnailScroll>
+          <img *ngFor="let img of product.images"
+               [src]="img.url"
+               alt="thumbnail"
+               class="thumbnail"
+               [class.active]="img.url === selectedImage"
+               (click)="onSelectImage(img.url)"
+               (mouseenter)="onSelectImage(img.url)">
+        </div>
+        
+        <button class="scroll-btn" (click)="scrollThumbnails(1)">▼</button>
+      </div>
+
+      <!-- Main Image and Zoom -->
+      <div class="image-zoom-container"
+           (mousemove)="onMouseMove($event)"
+           (mouseleave)="onMouseLeave()">
+        <img [src]="selectedImage"
+             alt="{{ product.name }}"
+             class="product-image" />
+        <div class="zoomed-image"
+             #zoomedImage
+             [style.background-image]="'url(' + selectedImage + ')'">
+        </div>
+      </div>
     </div>
+
     <div class="product-info">
+      <h1>{{ product.name }}</h1>
       <p>{{ product.description }}</p>
       <p>{{ product.category }}</p>
     </div>
   </div>
 </div>
+
 <ng-template #loading>
   <p>Loading product details...</p>
 </ng-template>
